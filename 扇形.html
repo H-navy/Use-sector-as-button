@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        .hide{
+            display: none;
+        }
+        /* 左边 圆的样式 */
+.mainPie{
+	width:180px;
+	height:180px;
+	/* width:200px;
+	height:200px; */
+	/* border-radius: 50%; */
+	position:relative;
+	overflow:hidden;
+	margin-top:40px;
+}
+  .pie {
+    /* margin:10px auto 0; */
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    divst-style: none;
+     overflow: hidden;
+    transform: rotate(0deg) ;/*  针对mac safari浏览器兼容 */
+    z-index:3;
+    
+  }
+  .whitePie{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background:#fff;
+    border-radius: 50%;
+    top:50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+  }
+  .transparentPie{
+  	position: absolute;
+    width: 200px;
+    height: 200px;
+    background:transparent;
+    border-radius: 50%;
+    top:50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+    z-index:99;
+  }
+  .sdivce {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    transform-origin: 0% 100%;
+    text-indent:-9999px;
+  }
+  .piedivne01{
+      position:absolute;
+      top:50%;
+      left:0;
+      margin-top:-1px;
+      width:100%;
+      height:2px;
+      background:#fff;
+      transform:rotate(0deg)
+  }
+  .piedivne02{
+      position:absolute;
+      top:50%;
+      left:0;
+      margin-top:-1px;
+      width:100%;
+      height:2px;
+      background:#fff;
+      transform:rotate(45deg)
+  }
+  .piedivne03{
+      position:absolute;
+      top:50%;
+      left:0;
+      margin-top:-1px;
+      width:100%;
+      height:2px;
+      background:#fff;
+      transform:rotate(90deg)
+  }
+  .piedivne04{
+      position:absolute;
+      top:50%;
+      left:0;
+      margin-top:-1px;
+      width:100%;
+      height:2px;
+      background:#fff;
+      transform:rotate(135deg)
+  }
+  .sdivce-8 {
+    transform: rotate(-45deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-7 {
+    transform: rotate(-90deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-6 {
+    transform: rotate(-135deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-5 {
+    transform: rotate(-180deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-4 {
+    transform: rotate(-225deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-3 {
+    transform: rotate(-270deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-2 {
+    transform: rotate(-315deg) skewY(-45deg);
+    background: #00468E;
+ }
+  .sdivce-1 {
+    transform: rotate(-360deg) skewY(-45deg);
+    background: #00468E;
+ }
+ .icons{
+     width: 24px;
+     height: 24px;
+     background:pink;
+     position: absolute;
+     text-indent:-9999px;
+ }
+ .icon1{
+    top: 14px;
+    left: 60%;
+    background:url(./img/ziliaoshouce.png) no-repeat;
+ }
+ .icon2{
+     right: 12px;
+     bottom:56%;
+     background:url(./img/hezuowoshou.png) no-repeat;
+ }
+ .icon3{
+     right: 12px;
+     top: 56%;
+     background:url(./img/ico_data.png) no-repeat;
+ }
+ .icon4{
+     left: 60%;
+     bottom: 14px;
+     background:url(./img/wendang.png) no-repeat;
+ }
+ .icon5{
+     right: 60%;
+     bottom: 14px;
+     background:url(./img/wenjian.png) no-repeat;
+ }
+ .icon6{
+     left: 12px;
+     top:56%;
+     background:url(./img/huaban.png) no-repeat;
+ }
+ .icon7{
+     left: 12px;
+     bottom:56%;
+     background:url(./img/bond-fill.png) no-repeat;
+ }
+ .icon8{
+     top: 14px;
+     right: 60%;
+     background:url(./img/gonggao.png) no-repeat;
+ }
+ 
+ 
+ .pieToolip{
+ 	padding-left:12px;
+ 	padding-right:12px;
+ 	/* width:152px; */
+	height:34px;
+	line-height:34px;
+	background:rgba(255,255,255,1);
+	box-shadow:0px 0px 16px 0px rgba(213,213,213,0.75);
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:9;
+ }
+ 
+ .pieToolip i{
+ 	width:7px;
+	height:7px;
+	background:rgba(0,70,142,1);
+	border-radius:50%;
+	display:inline-block;
+ }
+ 
+/*  蓝底代表完成通过 橙色代表未通过，未成功的 ， 灰色是还没提交开始的   */
+
+.pass{
+	background-color:#00468E !important;
+}
+.refuse{
+	background-color:#FF7F00 !important;
+}
+.notCommit{
+	background-color:#DEDFE2 !important;
+}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+        <div class="progressBox">
+                <div class="progressMain">
+                        <!-- 提示框 -->
+                        <div class="pieToolip hide">
+                            <i></i>
+                            <a class="text1"></a>
+                            <a class="text2"></a>
+                        </div>
+                        <div class="echartsBox">
+                            <div class="mainPie">
+                                  <div class="pie">
+                                    <div class="sdivce-1 sdivce refuse" >按钮1</div>
+                                    <div class="sdivce-2 sdivce notCommit" >按钮2</div>
+                                    <div class="sdivce-3 sdivce pass" >按钮3</div>
+                                    <div class="sdivce-4 sdivce notCommit" >按钮4</div>
+                                    <div class="sdivce-5 sdivce refuse" >按钮5</div>
+                                    <div class="sdivce-6 sdivce pass" >按钮6</div>
+                                    <div class="sdivce-7 sdivce refuse" >按钮7</div>
+                                    <div class="sdivce-8 sdivce notCommit" >按钮8</div>
+                                    <div class="piedivne01"></div>
+                                    <div class="piedivne02"></div>
+                                    <div class="piedivne03"></div>
+                                    <div class="piedivne04"></div>
+                                    <div class="whitePie"></div>
+                        
+                                    <div class="icons icon1">1</div>
+                                    <div class="icons icon2">2</div>
+                                    <div class="icons icon3">3</div>
+                                    <div class="icons icon4">4</div>
+                                    <div class="icons icon5">5</div>
+                                    <div class="icons icon6">6</div>
+                                    <div class="icons icon7">7</div>
+                                    <div class="icons icon8">8</div>
+                                </div>
+                            </div>
+                        </div>	
+                </div>
+            </div>
+        <script>
+           
+	 
+	 // 悬停左侧pie 显示内容
+	 var hoverPie = function(){
+		 var $pieToolip =$(".pieToolip")
+		 /*mousemove 方法 被触发 是在 进入 pie元素之后
+		 防止快速移出得时候提示框还在 所以添加hover事件*/
+		 $('.pie').hover(function(){
+			 $('.pie').mousemove(function(e){
+				    //判断4个 区域是不需要 显示的  
+				    // 左上方 右上方 左下方 右下方
+				    //1.中心圆的坐标
+				    var r = $('.pie').width()/2
+				    var pieY = $(this).offset().top  + r
+				    var pieX = $(this).offset().left + r
+				    /*2. 求出 e.pageX e.pageY 相对于 中心圆的坐标是多少
+						    左上角的点 369 51
+						    中心圆点 459 141
+						    中心圆点 x - 左上圆点 x = 相对坐标x
+						    中心圆点 y -  左上圆点y = 相对坐标y
+						    相对坐标x的平方 + 相对坐标y的平方 > 半径的平方 则代表不在圆形范围内
+						    不触发点击事件
+				    */
+				    var eX = e.pageX;
+				    var eY = e.pageY;
+				    var dX = pieX - eX;
+				    var dY = pieY - eY;
+				    if(Math.pow(dX,2) + Math.pow(dY,2) > Math.pow(r,2)){
+				    	$pieToolip.addClass('hide')
+				    }else{
+				    	//判断进入的是哪一个  icons 还是  sdivce
+				    	var _this = $(e.target);
+				    	if(_this.hasClass('sdivce')){
+				    		
+				    		//获取 进度得状态
+				    		var toolipColor = e.target.classList[e.target.classList.length - 1] ;
+				    		
+				    		$pieToolip.removeClass('hide')
+							 var text = _this.text()
+							 var index = parseInt(_this.index()) + 1
+							 var $icon = $('.icon'+index)
+							 
+							 $pieToolip.removeClass('hide')
+							 $pieToolip.css("top",$icon.offset().top - $pieToolip.height() - 15)
+					 				.css("left",$icon.offset().left)
+		                     $pieToolip.find('a').eq(0).text(text) //确定消息提示框显示进程
+		                     $pieToolip.find('i').removeClass().addClass(toolipColor) //添加圆圈颜色
+				    	}else if(_this.hasClass('icons')){
+				    		$pieToolip.removeClass('hide')
+				    	}else{
+				    		$pieToolip.addClass('hide')
+				    	}
+				    }
+				 });
+		 },function(){
+			 $pieToolip.addClass('hide') //移出 pie 元素得时候 需要隐藏
+		 })
+	 }
+	 $(document).ready(function() {
+		 hoverPie();
+	 });
+        </script>
+</body>
+</html>
